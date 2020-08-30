@@ -151,18 +151,18 @@ class YModem(object):
             sequence = (sequence + 1) % 0x100
 
         # [EOT >>>]
-        # [<<< NAK]
+        # [<<< ACK]
         # [EOT >>>]
         # [<<< ACK]
         self.putc(EOT)
         self.log.debug(">>> EOT")
-        #self.wait_for_next(NAK)
+        self.wait_for_next(ACK)
         self.putc(EOT)
         self.log.debug(">>> EOT")
-        #self.wait_for_next(ACK)
+        self.wait_for_next(ACK)
 
         # [<<< CRC]
-        #self.wait_for_next(CRC)
+        self.wait_for_next(CRC)
         
         # [Final packet >>>]
         header = self._make_edge_packet_header()
