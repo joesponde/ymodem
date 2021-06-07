@@ -159,7 +159,6 @@ class YModem(object):
         self.wait_for_next(ACK)
         self.putc(EOT)
         self.log.debug(">>> EOT")
-        self.wait_for_next(ACK)
 
         # [<<< CRC]
         self.wait_for_next(CRC)
